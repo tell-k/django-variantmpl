@@ -38,8 +38,8 @@ Quick start
 
 4. Confirm ``views.sample`` display in  your browser.
 
-* You can see the word **sample v2**. 
-* It is the result of loading the template(``index+v2.html``) corresponding to ``request.variant``.
+* You can see **sample v2**. 
+* It is the result of loading the template(``index+v2.html``) based on ``request.variant``.
 
 Features
 =========
