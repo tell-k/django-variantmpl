@@ -180,7 +180,7 @@ You can change ``variant`` format. default: ``+variant``.
  # settings.py --
  VARIANTMPL_VARIANT_FORMAT = '@{variant}'
 
-.. code-block::
+::
 
  # The lookup target template name changes as follows.
 
