@@ -24,7 +24,7 @@ Quick start
 
  def sample(request):
 
-     # Set an arbitrary value
+     # Set variant value
      request.variant = 'v2'
 
      return render(request, 'index.html')
@@ -33,12 +33,13 @@ Quick start
 
 .. code-block:: bash
 
- $ echo 'sample version1' > templates/index.html
+ $ echo 'sample v1' > templates/index.html
  $ echo 'sample v2' > templates/index+v2.html
 
-4. Confirm your ``views.sample`` display.
+4. Confirm ``views.sample`` display in  your browser.
 
-* You can see the word **version 2**. It is the result of loading the template(``index+v2.html``) corresponding to ``request.variant``.
+* You can see the word **sample v2**. 
+* It is the result of loading the template(``index+v2.html``) corresponding to ``request.variant``.
 
 Features
 =========
@@ -46,7 +47,7 @@ Features
 render
 --------
 
-Use instead of `django.shortcuts.render`.
+Use instead of ``django.shortcuts.render``.
 
 .. code-block:: python
 
@@ -64,7 +65,7 @@ Use instead of `django.shortcuts.render`.
 render_to_response
 --------------------
 
-Use instead of `django.shortcuts.render_to_response`.
+Use instead of ``django.shortcuts.render_to_response``.
 
 .. code-block:: python
 
@@ -82,7 +83,7 @@ You can set ``variant`` as a keyword argument.
 render_to_string
 --------------------
 
-Use instead of `django.template.loader.render_to_string`.
+Use instead of ``django.template.loader.render_to_string``.
 
 .. code-block:: python
 
@@ -103,7 +104,7 @@ Use instead of `django.template.loader.render_to_string`.
 TemplateResponse
 --------------------
 
-Use instead of `django.template.response.TemplateResponse`.
+Use instead of ``django.template.response.TemplateResponse``.
 
 .. code-block:: python
 
@@ -127,7 +128,7 @@ Use instead of `django.template.response.TemplateResponse`.
 Monkey patching Django's functions/classes
 -----------------------------------------------
 
-It is difficult to rewrite all code with large codes already to `variantmpl` code. In such a case, you can apply Monkey patch to Django's functions/classes.
+It is difficult to rewrite all code with large codes already to ``variantmpl`` code. In such a case, you can apply Monkey patch to Django's functions/classes.
 
 **Caution** : This feature is experimental. This may be deleted in the future if unexpected bad effects occur.
 
@@ -169,7 +170,7 @@ All targets for monkey patching.
 Configuration
 ===============
 
-VARINATMPL_VARIANT_FORMAT
+VARIANTMPL_VARIANT_FORMAT
 -----------------------------------
 
 You can change ``variant`` format. default: ``+variant``.
@@ -177,7 +178,7 @@ You can change ``variant`` format. default: ``+variant``.
 .. code-block:: python
 
  # settings.py --
- VARINATMPL_VARIANT_FORMAT = '@{variant}'
+ VARIANTMPL_VARIANT_FORMAT = '@{variant}'
 
 .. code-block::
 
@@ -186,7 +187,7 @@ You can change ``variant`` format. default: ``+variant``.
  "index+variant.html" -> "index@variant.html"
 
 
-VARINATMPL_PROPERTY_NAME
+VARIANTMPL_PROPERTY_NAME
 -----------------------------------
 
 You can rename ``request.variant`` property.
@@ -194,7 +195,7 @@ You can rename ``request.variant`` property.
 .. code-block:: python
 
  # settings.py --
- VARINATMPL_PROPERTY_NAME = 'mutation'
+ VARIANTMPL_PROPERTY_NAME = 'mutation'
 
 .. code-block:: python
 
@@ -202,7 +203,7 @@ You can rename ``request.variant`` property.
  request.mutation = 'v2'
 
 
-VARINATMPL_TEMPLATE_FORMAT
+VARIANTMPL_TEMPLATE_FORMAT
 -----------------------------------
 
 You can change the position of the variant inserted into template path.
@@ -215,8 +216,8 @@ You can change the position of the variant inserted into template path.
  # variantmpl inserts the variant(v2) as follows.
  'sample1/sample2/index+v2.html'
 
- # At this time, VARINATMPL_TEMPLATE_FORMAT is like this. (default)
- VARINATMPL_TEMPLATE_FORMAT = '{dirpath}{filename}{variant}.{ext}'
+ # At this time, VARIANTMPL_TEMPLATE_FORMAT is like this. (default)
+ VARIANTMPL_TEMPLATE_FORMAT = '{dirpath}{filename}{variant}.{ext}'
  dirpath  # => 'sample1/sample2/'
  filename # => 'index'
  variant  # => '+v2'
@@ -226,7 +227,7 @@ Change this format like this.
 
 .. code-block:: python
 
- VARINATMPL_TEMPLATE_FORMAT = '{variant}/{dirpath}{filename}.{ext}'
+ VARIANTMPL_TEMPLATE_FORMAT = '{variant}/{dirpath}{filename}.{ext}'
 
  # variantmpl inserts the variant(v2) as follows.
  '+v2/sample1/sample2/index.html'
