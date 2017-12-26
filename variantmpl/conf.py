@@ -1,6 +1,6 @@
 """
-    variantmpl.constants
-    ~~~~~~~~~~~~~~~~~~~~
+    variantmpl.conf
+    ~~~~~~~~~~~~~~~~~~
 
     :author: tell-k <ffk2005 at gmail.com>
     :copyright: tell-k. All Rights Reserved.
