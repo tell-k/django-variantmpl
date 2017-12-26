@@ -1,5 +1,6 @@
 We often want to render different HTML templates for phones, tablets, and desktop browsers. Or for AB testing. ``django-variatmpl``  make it easy. By setting ``request.variant``, you can render the template according to that ``request.variant``. This library is heavily inspired by `Action Pack Variants <http://guides.rubyonrails.org/4_1_release_notes.html#action-pack-variants>`_.
 
+
 |travis| |coveralls| |version| |license|
 
 Quick start
