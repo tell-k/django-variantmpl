@@ -248,7 +248,7 @@ In this case templates layout will change as follows
 
 
 
-Switch templates based on UserAgent
+Switch templates based on User-Agent
 =======================================
 
 It can be realized easily using `uadetector <https://github.com/tell-k/uadetector>`_.
@@ -257,7 +257,7 @@ Create Django middleware to set varaint for each device.
 
 .. code-block:: python
 
- class DeviceVariantMiddleare:
+ class DeviceVariantMiddleware:
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -276,7 +276,7 @@ Add the middlewares in settings.py.
 
  MIDDLEWARE = [
     'uadetector.django.middleware.UADetectorMiddleware',
-    'path.to.DeviceVariantMiddlearee',
+    'path.to.DeviceVariantMiddleware',
     # ... omit ...
  ]
 
