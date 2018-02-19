@@ -212,7 +212,7 @@ You can change the position of the variant inserted into template path.
 .. code-block:: python
 
  # For example, you have this path.
- render('sample1/sample2/index.html')
+ render(request, 'sample1/sample2/index.html')
 
  # variantmpl inserts the variant(v2) as follows.
  'sample1/sample2/index+v2.html'
@@ -246,6 +246,48 @@ In this case templates layout will change as follows
        └── sample2
            └── index.html
 
+
+
+Switch templates based on UserAgent
+=======================================
+
+It can be realized easily using `uadetector <https://github.com/tell-k/uadetector>`_.
+
+Create Django middleware to set varaint for each device.
+
+.. code-block:: python
+
+ class DeviceVariantMiddleare:
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        request.variant = request.ua.device_variant # 'pc' or 'smartphone' or 'mobilephone'  
+                                                    # or 'appliance' or 'crawler'
+        response = self.get_response(request)
+        return response
+
+Add the middlewares in settings.py.
+
+.. code-block:: python
+
+ # settings.py
+
+ MIDDLEWARE = [
+    'uadetector.django.middleware.UADetectorMiddleware',
+    'path.to.DeviceVariantMiddlearee',
+    # ... omit ...
+ ]
+
+Prepare templates for device variant.
+
+.. code-block:: 
+
+  templates/index.html
+  templates/index+smartphone.html
+  templates/index+crawler.html
+ 
 
 Python and Django Support
 =========================
